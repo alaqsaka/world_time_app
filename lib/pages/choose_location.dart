@@ -45,24 +45,41 @@ class _ChooseLocationState extends State<ChooseLocation> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: ListView.builder(
-        itemCount: locations.length,
-          itemBuilder: (context, index){
+      body: GridView.count(
+        // Create a grid with 2 columns. If you change the scrollDirection to
+        // horizontal, this produces 2 rows.
+        crossAxisCount: 2,
+        // Generate 100 widgets that display their index in the List.
+        children: List.generate(locations.length, (index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+            padding: const EdgeInsets.all(8.0),
             child: Card(
-              child: ListTile(
+              color: Colors.white,
+              child: InkWell(
                 onTap: (){
                   updateTime(index);
                 },
-                title: Text(locations[index].location),
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage('assets/${locations[index].flag}'),
+                child: GridTile(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [Center(
+                      child: Text(
+                        '${locations[index].location}',
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(backgroundImage: AssetImage('assets/${locations[index].flag}'),),
+                    )],
+                  ),
                 ),
               ),
             ),
           );
-      }),
+        }),
+      ),
     );
   }
 }
