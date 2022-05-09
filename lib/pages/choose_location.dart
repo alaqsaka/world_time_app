@@ -66,11 +66,15 @@ class _ChooseLocationState extends State<ChooseLocation> {
                     children: [Center(
                       child: Text(
                         '${locations[index].location}',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 28.0,
+                          color: Colors.black87
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: CircleAvatar(backgroundImage: AssetImage('assets/${locations[index].flag}'),),
                     )],
                   ),
